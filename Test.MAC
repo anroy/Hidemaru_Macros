@@ -1,0 +1,5 @@
+	setcompatiblemode 0x0F;
+	insert "-";
+	down;
+	left;
+	insert "-";

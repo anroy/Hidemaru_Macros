@@ -1,0 +1,5 @@
+	setcompatiblemode 0x0F;
+	loaddll "HmOutputPane.dll";
+	// #ret=dllfunc("Output",hidemaruhandle(0), linecount2 + "Arka1\r\nArka2\r\n");
+	$lineCnt = str(linecount2);
+	#ret=dllfunc("Output",hidemaruhandle(0), $lineCnt + "Arka1\r\nArka2\r\n");

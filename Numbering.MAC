@@ -1,0 +1,17 @@
+	setcompatiblemode 0x0F;
+	insert "1. ";
+	down;
+	golinetop;
+	insert "2. ";
+	down;
+	golinetop;
+	insert "3. ";
+	down;
+	golinetop;
+	insert "4. ";
+	down;
+	golinetop;
+	insert "5. ";
+	down;
+	golinetop;
+	insert "6. ";

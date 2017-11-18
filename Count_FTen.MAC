@@ -1,0 +1,46 @@
+///////////////
+// Main process
+///////////////
+setcompatiblemode 0x0F;
+loaddll "HmOutputPane.dll";
+
+// Clear current Output
+#ret=dllfunc("Push",hidemaruhandle(0));
+
+// Count SAYFROM Raw
+call CountSub "	SAYFROM	Raw	";
+#sayFromCnt = ##return;
+
+// Count INPUTINTERP Details
+call CountSub "	INPUTINTERP	Details	";
+#detailsCnt = ##return;
+
+// Count SWITCHAGENT
+call CountSub "	SWITCHAGENT	";
+#switchAgentCnt = ##return;
+
+// Count SESSION
+call CountSub "	SESSION	";
+#sessionCnt = ##return;
+
+// Calculate and output totals
+#totalCnt = #sayFromCnt + #detailsCnt - #switchAgentCnt + #sessionCnt;
+$totalStr = "SAYFROM Raw + INPUTINTERP Details - SWITCHAGENT + SESSION: ";
+#ret=dllfunc("Output",hidemaruhandle(0), $totalStr + str(#totalCnt) + "\r\n");
+
+endmacro;
+
+///////////////
+// Subroutines
+///////////////
+CountSub:
+	gofiletop;
+	#cnt = 0;
+	searchdown $$1, casesense;
+	while( result ) {
+		#cnt = #cnt + 1;
+		searchdown $$1, casesense;
+	}
+	#ret=dllfunc("Output",hidemaruhandle(0), "Count of " + $$1 + ": " + str(#cnt) + "\r\n");
+	return #cnt;
+

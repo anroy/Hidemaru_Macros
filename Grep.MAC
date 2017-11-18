@@ -1,0 +1,14 @@
+	setcompatiblemode 0x0F;
+
+	localgrep "	SESSION	", word;
+	gofileend;
+	loaddll "HmOutputPane.dll";
+	$sessionCnt = str(linecount2 - 1);
+	#ret=dllfunc("Output",hidemaruhandle(0), "SESSION count: " + $sessionCnt + "\r\n");
+
+	localgrep "	SWITCHAGENT	", word;
+	gofileend;
+	loaddll "HmOutputPane.dll";
+	$switchAgentCnt = str(linecount2 - 1);
+	#ret=dllfunc("Output",hidemaruhandle(0), "SWITCHAGENT count: " + $switchAgentCnt + "\r\n");
+
